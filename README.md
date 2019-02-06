@@ -14,6 +14,7 @@ Features:
 
 ## Wireframes
 This app will be a single screen app.  The left half of the browser window will be the various controls for the map on the right half along with various information about myself and the project itself. 
+![wireframe][turnstyle.png]
 
 ## Architecture & Technologies
 This project will be implemented with the following technologies:
