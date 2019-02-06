@@ -23,6 +23,7 @@
   "homepage": "https://github.com/hsteg/TurnStyle#readme",
   "dependencies": {
     "babel-loader": "^8.0.5",
+    "papaparse": "^4.6.3",
     "webpack": "^4.29.2",
     "webpack-cli": "^3.2.3"
   }
