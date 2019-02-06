@@ -21,9 +21,10 @@ This app will be a single screen app.  The left half of the browser window will 
 ## Architecture & Technologies
 This project will be implemented with the following technologies:
 
- - `NodeJS ` 
+ - `Javascript ` 
  - `GoogleMaps` for displaying the map and associated subway stations
  - `Webpack` for bundling JS files. 
+ - `D3.js` for data visualization
  
  In addition to the entry file, there will be three scripts involved in this project.
  
