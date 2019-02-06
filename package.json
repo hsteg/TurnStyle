@@ -1,0 +1,29 @@
+{
+  "name": "TurnStyle",
+  "version": "1.0.0",
+  "description": "## Functionality & MVP",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --watch --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hsteg/TurnStyle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hsteg/TurnStyle/issues"
+  },
+  "homepage": "https://github.com/hsteg/TurnStyle#readme",
+  "dependencies": {
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.29.2",
+    "webpack-cli": "^3.2.3"
+  }
+}
