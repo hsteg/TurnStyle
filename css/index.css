@@ -1,0 +1,19 @@
+.main-content {
+  display: flex;
+  height: 100vh;
+}
+
+.left-half-main {
+  width: 45vw;
+  background-color: lightyellow;
+}
+
+.right-half-main {
+  width: 55vw;
+  background-color: lightslategray;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
