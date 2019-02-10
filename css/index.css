@@ -19,5 +19,11 @@
 }
 
 #play-controls{
-  display: none;
+  display: block;
+}
+
+.shape {
+  stroke: white;
+  display: block;
+  stroke-width: 2px;
 }
