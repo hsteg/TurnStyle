@@ -22,9 +22,23 @@
   display: block;
 }
 
-.shape {
+
+.stations, .stations svg {
+  position: absolute;
+}
+
+.stations svg {
+  width: 60px;
+  height: 20px;
+  padding-right: 100px;
+  font: 10px sans-serif;
+}
+
+.stations circle {
+  fill: white;
+  opacity: 0.4;
   stroke: white;
-  display: block;
-  stroke-width: 2px;
+  stroke-width: 1;
+
 }
 
