@@ -28,17 +28,27 @@
 }
 
 .stations svg {
-  width: 60px;
-  height: 20px;
-  padding-right: 100px;
+  width: 100px;
+  height: 100px;
+  /* padding-right: 100px; */
   font: 10px sans-serif;
 }
 
-.stations circle {
+.base-circle {
   fill: white;
   opacity: 0.4;
   stroke: white;
   stroke-width: 1;
-
 }
+
+.green-moving-circle {
+  fill: green;
+  stroke: none;
+}
+
+.red-moving-circle {
+  fill: red;
+  stroke: none;
+}
+
 
