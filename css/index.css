@@ -1,3 +1,19 @@
+
+
+@font-face {
+  font-family: 'Helvetica Neue LT Std';
+  src: url('HelveticaNeueLTStd-Md.woff2') format('woff2'),
+      url('HelveticaNeueLTStd-Md.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  font-family: 'HelveticaNeueLTStd-Md';
+}
+
+
+
 .main-content {
   display: flex;
   height: 100vh;
@@ -40,5 +56,21 @@
   stroke: white;
   stroke-width: 1;
 }
+
+.header {
+  background-color: black;
+  align-items: center;
+  height: 15vh;
+}
+
+.banner {
+  padding-top: 55px;
+  color: white;
+  font-size: 70px;
+  margin: 0 auto;
+}
+
+
+
 
 
