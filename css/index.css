@@ -59,15 +59,24 @@ body {
 
 .header {
   background-color: black;
-  align-items: center;
   height: 15vh;
+  text-align: center;
 }
 
 .banner {
-  padding-top: 55px;
+  padding-top: 10px;
   color: white;
-  font-size: 70px;
+  font-size: 90px;
   margin: 0 auto;
+}
+
+.banner-white-line {
+  margin-top: 10px;
+  display: inline-block;
+  border-style: none;
+  height: 4px;
+  width: 100%;
+  background-color: white;
 }
 
 
