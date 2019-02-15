@@ -605,11 +605,11 @@ class MapDataOverlay {
         }
       }
 
-      this.setActiveStation(i);
+      this.setActiveTimelineDate(i);
 
       // dataDisplay.innerHTML = i;
       if (i === 39) { 
-        this.setActiveStation(40)
+        this.setActiveTimelineDate(40)
         clearInterval(interval); 
       }
       i++;
@@ -617,7 +617,7 @@ class MapDataOverlay {
 
   }
 
-  setActiveStation(active) {
+  setActiveTimelineDate(active) {
     let inactiveCircles = document.querySelectorAll(".ui-circle");
     let inactiveText = document.querySelectorAll(".timeline-text");
 
