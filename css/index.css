@@ -16,13 +16,12 @@ body {
 }
 
 .left-half-main {
-  width: 45vw;
+  width: 650px;
   background-color: #f2e9d4;
 }
 
 .right-half-main {
-  width: 55vw;
-  background-color: lightslategray;
+  flex: 1;
 }
 
 #map {
@@ -54,7 +53,7 @@ body {
 
 .header {
   background-color: black;
-  height: 15vh;
+  height: 120px;
   text-align: center;
 }
 
@@ -113,5 +112,9 @@ body {
   fill: white;
   stroke: black;
   stroke-width: 3;
+}
+
+.timeline-text {
+  text-decoration-color: #777777;
 }
 

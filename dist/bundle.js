@@ -807,9 +807,7 @@ class MapDataOverlay {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dataParse__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataParse */ "./lib/dataParse.js");
-/* harmony import */ var _map_data_overlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./map_data_overlay */ "./lib/map_data_overlay.js");
-/* harmony import */ var _ui_controls__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ui_controls */ "./lib/ui_controls.js");
-
+/* harmony import */ var _ui_controls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ui_controls */ "./lib/ui_controls.js");
 
 
 
@@ -836,14 +834,8 @@ class TurnStyle {
   }
 
   addPlayControls() {
-    const mapOverlay = new _map_data_overlay__WEBPACK_IMPORTED_MODULE_1__["default"]();
-    const uIControls = new _ui_controls__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    const uIControls = new _ui_controls__WEBPACK_IMPORTED_MODULE_1__["default"]();
     uIControls.initPlayControls(this.data);
-    const playControlsDiv = document.getElementById('play-controls');
-    const controlBar = document.createElement('button');
-    controlBar.innerHTML = 'clickme';
-    controlBar.onclick = () => {mapOverlay.addNewCircles(this.data)};
-    playControlsDiv.appendChild(controlBar);
   }
 }
 
@@ -1054,6 +1046,8 @@ class UIControls {
       .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 56)
+      .attr("id", "timeline-text-saturday")
+      .attr("class", "timeline-text")
       .text("Saturday")
 
     //timeline circle
@@ -1070,6 +1064,8 @@ class UIControls {
       .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 131)
+      .attr("id", "timeline-text-sunday")
+      .attr("class", "timeline-text")
       .text("Sunday")
 
 
@@ -1083,11 +1079,13 @@ class UIControls {
       .attr("class", "ui-circle");
 
       whiteBox.append("text")
+      .attr("class", "timeline-text")
       .attr("x", 525)
       .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 206)
-      .text("Monday")
+      .attr("id", "timeline-text-monday")
+      .text("Monday");
 
     //timeline circle
     whiteBox.append("svg").append('circle')
@@ -1103,7 +1101,9 @@ class UIControls {
       .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 281)
-      .text("Tuesday")
+      .attr("id", "timeline-text-tuesday")
+      .attr("class", "timeline-text")
+      .text("Tuesday");
 
     //timeline circle
     whiteBox.append("svg").append('circle')
@@ -1119,7 +1119,9 @@ class UIControls {
       .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 356)
-      .text("Wednesday")
+      .attr("id", "timeline-text-wednesday")
+      .attr("class", "timeline-text")
+      .text("Wednesday");
 
     //timeline circle
     whiteBox.append("svg").append('circle')
@@ -1135,7 +1137,9 @@ class UIControls {
       .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 431)
-      .text("Thursday")
+      .attr("id", "timeline-text-thursday")
+      .attr("class", "timeline-text")
+      .text("Thursday");
 
     //timeline circle
     whiteBox.append("svg").append('circle')
@@ -1151,7 +1155,9 @@ class UIControls {
       .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 506)
-      .text("Friday")
+      .attr("id", "timeline-text-friday")
+      .attr("class", "timeline-text")
+      .text("Friday");
 
   }
 }
