@@ -12,8 +12,6 @@ body {
   font-family: 'HelveticaNeueLTStd-Md';
 }
 
-
-
 .main-content {
   display: flex;
   height: 100vh;
@@ -21,7 +19,7 @@ body {
 
 .left-half-main {
   width: 45vw;
-  background-color: lightyellow;
+  background-color: #f2e9d4;
 }
 
 .right-half-main {
@@ -35,9 +33,9 @@ body {
 }
 
 #play-controls{
-  display: block;
+  display: none;
+  
 }
-
 
 .stations, .stations svg {
   position: absolute;
@@ -46,7 +44,6 @@ body {
 .stations svg {
   width: 100px;
   height: 100px;
-  /* padding-right: 100px; */
   font: 10px sans-serif;
 }
 
@@ -79,7 +76,26 @@ body {
   background-color: white;
 }
 
+#ui-controls {
+  width: 100%;
+  box-sizing: border-box;
+}
 
 
+#svg-container {
+  height: 85vh;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  vertical-align: top;
+  margin: 0;
+}
 
-
+.new-circle {
+  fill: white;
+  opacity: 0.4;
+  stroke: white;
+  stroke-width: 1;
+  position: absolute;
+}

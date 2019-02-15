@@ -586,7 +586,7 @@ class MapDataOverlay {
 
     let stationLayer = d3.select(".stations");
 
-    
+    // const dataDisplay = document.querySelector("#data")
     let i = 0;
     // let newestData = flatData[i];
     
@@ -601,7 +601,7 @@ class MapDataOverlay {
           newestData[k].diff >= 0 ? this.generateEntrance(marker) : this.generateExit(marker);
         }
       }
-      console.log(i);
+      // dataDisplay.innerHTML = i;
       if (i === 39) { clearInterval(interval); }
       i++;
     }, 2300);
@@ -702,7 +702,7 @@ class MapDataOverlay {
   numCirclesToGenerate(difference) {
     let nonNegDifference = difference < 0 ? difference * -1 : difference;
     if (nonNegDifference > 15000) { return 3; }
-    let numCircles = nonNegDifference / 250;
+    let numCircles = nonNegDifference / 500;
     return numCircles;
   }
 
@@ -725,6 +725,8 @@ class MapDataOverlay {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dataParse__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataParse */ "./lib/dataParse.js");
 /* harmony import */ var _map_data_overlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./map_data_overlay */ "./lib/map_data_overlay.js");
+/* harmony import */ var _ui_controls__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ui_controls */ "./lib/ui_controls.js");
+
 
 
 
@@ -752,6 +754,8 @@ class TurnStyle {
 
   addPlayControls() {
     const mapOverlay = new _map_data_overlay__WEBPACK_IMPORTED_MODULE_1__["default"]();
+    const uIControls = new _ui_controls__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    uIControls.initPlayControls();
     const playControlsDiv = document.getElementById('play-controls');
     const controlBar = document.createElement('button');
     controlBar.innerHTML = 'clickme';
@@ -771,6 +775,113 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+/***/ }),
+
+/***/ "./lib/ui_controls.js":
+/*!****************************!*\
+  !*** ./lib/ui_controls.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _map_data_overlay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map_data_overlay */ "./lib/map_data_overlay.js");
+
+
+class UIControls {
+  constructor() {
+    this.mapDataOverlay = new _map_data_overlay__WEBPACK_IMPORTED_MODULE_0__["default"]();
+  }
+
+  initPlayControls() {
+
+    d3.select('#ui-controls').append("svg").attr("id", "svg-container")
+
+    let whiteBox = d3.select("#svg-container")
+      .attr("width", '100%')
+      // .attr("height", '100%')
+      .style('background-color', '#f2e9d4');
+
+    whiteBox.append('line')
+      .style("stroke", "#1ba057")
+      .style("stroke-width", 10)
+      .attr("x1", 510)
+      .attr("y1", 0)
+      .attr("x2", 510)
+      .attr("y2", 1000);
+
+      // whiteBox.append('path')
+      // .style("stroke", "#1ba057")
+      // .style("fill", "transparent")
+      // .style("stroke-width", 10)
+      // .attr("d", "M 540 0 C 540 95 500 35 500 500 C 545 745 525 810 530 1000");
+
+    whiteBox.append('line')
+      .style("stroke", "#ec3243")
+      .style("stroke-width", 10)
+      .attr("x1", 200)
+      .attr("y1", 0)
+      .attr("x2", 200)
+      .attr("y2", 1000);
+
+    whiteBox.append('path')
+      .style("stroke", "#0d68b6")
+      .style("stroke-width", 10)
+      .style("fill", "transparent")
+      .attr("d", "M 75 0 L 75 500 C 75 600 320 520 340 630 L 340 1000");
+
+    // whiteBox.append('path')
+    //   .style("stroke", "#f38022")
+    //   .style("stroke-width", 10)
+    //   .style("fill", "transparent")
+    //   .attr("d", "M 350 0 L 350 640 Q 350 680 775 680");
+
+
+      whiteBox.append('line')
+      .style("stroke", "#f38022")
+      .style("stroke-width", 10)
+      .attr("x1", 350)
+      .attr("y1", 0)
+      .attr("x2", 350)
+      .attr("y2", 1000);
+
+      
+
+    whiteBox.append('path')
+      .style("stroke", "#fed623")
+      .style("fill", "transparent")
+      .style("stroke-width", 10)
+      .attr("d", "M 210 0 C 210 140 500 310 490 500 L 490 1000");
+
+    whiteBox.append('line')
+      .style("stroke", "#939598")
+      .style("stroke-width", 10)
+      .attr("x1", 0)
+      .attr("y1", 500)
+      .attr("x2", 1000)
+      .attr("y2", 500);
+
+
+    whiteBox.append("svg").append('circle')
+      .attr("cx", 75)
+      .attr("cy", 500)
+      .attr("r", 12)
+      .style("fill", "white")
+      .style("stroke", "black")
+      .style("stroke-width", 3);
+
+    whiteBox.append("svg").append('button').text("asdfasdf").attr('height', 400).attr('width', 40);
+
+
+
+
+
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (UIControls);
 
 /***/ }),
 
