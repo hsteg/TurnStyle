@@ -98,10 +98,20 @@ body {
   position: absolute;
 }
 
-.ui-circle {
+.ui-circle-link {
   fill: white;
   stroke: black;
   stroke-width: 3;
   cursor: pointer;
+}
+
+.ui-link {
+  cursor: pointer;
+}
+
+.ui-circle {
+  fill: white;
+  stroke: black;
+  stroke-width: 3;
 }
 

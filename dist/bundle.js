@@ -586,11 +586,14 @@ class MapDataOverlay {
 
     let stationLayer = d3.select(".stations");
 
-    // const dataDisplay = document.querySelector("#data")
-    let i = 0;
-    // let newestData = flatData[i];
     
+    let i = 0;
+    let timelineCircles;
+    
+
     let interval = setInterval(() => {
+      timelineCircles = document.querySelector(".ui-circle");
+      timelineCircles.style.fill = "white";
       let newestData = flatData[i];
       
       for (let k = 0; k < newestData.length; k++) {
@@ -601,11 +604,91 @@ class MapDataOverlay {
           newestData[k].diff >= 0 ? this.generateEntrance(marker) : this.generateExit(marker);
         }
       }
+
+      this.setActiveStation(i);
+
       // dataDisplay.innerHTML = i;
-      if (i === 39) { clearInterval(interval); }
+      if (i === 39) { 
+        this.setActiveStation(40)
+        clearInterval(interval); 
+      }
       i++;
     }, 2300);
 
+  }
+
+  setActiveStation(active) {
+    let inactive = document.querySelectorAll(".ui-circle");
+    for (let i = 0; i < inactive.length; i++) {
+      inactive[i].style.fill = "white";
+    }
+    
+    let day;
+    switch (active) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        day = document.querySelector("#timeline-saturday");
+        day.style.fill = "black";
+        break;
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+      case 10:
+        day = document.querySelector("#timeline-sunday");
+        day.style.fill = "black";
+        break;
+      case 11:
+      case 12:
+      case 13:
+      case 14:
+      case 15:
+      case 16:
+        day = document.querySelector("#timeline-monday");
+        day.style.fill = "black";
+        break;
+      case 17:
+      case 18:
+      case 19:
+      case 20:
+      case 21:
+      case 22:
+        day = document.querySelector("#timeline-tuesday");
+        day.style.fill = "black";
+        break;
+      case 23:
+      case 24:
+      case 25:
+      case 26:
+      case 27:
+      case 28:
+        day = document.querySelector("#timeline-wednesday");
+        day.style.fill = "black";
+        break;
+      case 29:
+      case 30:
+      case 31:
+      case 32:
+      case 33:
+      case 34:
+        day = document.querySelector("#timeline-thursday");
+        day.style.fill = "black";
+        break;
+      case 35:
+      case 36:
+      case 37:
+      case 38:
+      case 39:
+        day = document.querySelector("#timeline-friday");
+        day.style.fill = "black";
+        break;
+      default:
+        break;
+    }
   }
 
   generateExit(marker) {
@@ -793,7 +876,7 @@ __webpack_require__.r(__webpack_exports__);
 class UIControls {
   constructor() {
   }
-  
+
   initPlayControls(data) {
     const mapDataOverlay = new _map_data_overlay__WEBPACK_IMPORTED_MODULE_0__["default"]();
 
@@ -804,14 +887,14 @@ class UIControls {
       // .attr("height", '100%')
       .style('background-color', '#f2e9d4');
 
-    //6th ave line
+    //6 line
     whiteBox.append('line')
       .style("stroke-width", 10)
       .style("stroke", "#1ba057")
       .attr("x1", 510)
       .attr("y1", 0)
-      .transition().duration(2000)
       .attr("x2", 510)
+      .transition().duration(2000)
       .attr("y2", 1000);
 
     // whiteBox.append('path')
@@ -881,7 +964,16 @@ class UIControls {
       .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("cy", 227)
-      .attr("class", "ui-circle");
+      .attr("class", "ui-circle-link");
+
+    whiteBox.append("text")
+      .attr("x", 365)
+      .on("click", () => mapDataOverlay.addNewCircles(data))
+      .transition().duration(2000)
+      .attr("y", 233)
+      .text("Start Animation")
+      .attr("class", "ui-link");
+
 
     //8th 14th circle
     whiteBox.append("svg").append('circle')
@@ -889,7 +981,7 @@ class UIControls {
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 500)
-      .attr("class", "ui-circle");
+      .attr("class", "ui-circle-link");
 
     whiteBox.append("a")
       .attr("xlink:href", "http://dev.harrisonsteg.com")
@@ -899,7 +991,7 @@ class UIControls {
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 100)
-      .attr("class", "ui-circle");
+      .attr("class", "ui-circle-link");
 
     whiteBox.append("a")
       .attr("xlink:href", "http://linkedin.com/in/hsteg")
@@ -909,7 +1001,7 @@ class UIControls {
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 225)
-      .attr("class", "ui-circle");
+      .attr("class", "ui-circle-link");
 
     whiteBox.append("a")
       .attr("xlink:href", "http://github.com/hsteg")
@@ -919,7 +1011,7 @@ class UIControls {
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 350)
-      .attr("class", "ui-circle");
+      .attr("class", "ui-circle-link");
 
     whiteBox.append("a")
       .attr("xlink:href", "http://dev.harrisonsteg.com")
@@ -947,6 +1039,119 @@ class UIControls {
       .transition().duration(2000)
       .attr("y", 356)
       .text("GitHub");
+
+    //timeline circle
+    whiteBox.append("svg").append('circle')
+      .attr("cx", 510)
+      .attr("r", 12)
+      .transition().duration(2000)
+      .attr("cy", 50)
+      .attr("id", "timeline-saturday")
+      .attr("class", "ui-circle");
+
+    whiteBox.append("text")
+      .attr("x", 525)
+      .on("click", () => mapDataOverlay.addNewCircles(data))
+      .transition().duration(2000)
+      .attr("y", 56)
+      .text("Saturday")
+
+    //timeline circle
+    whiteBox.append("svg").append('circle')
+      .attr("cx", 510)
+      .attr("r", 12)
+      .transition().duration(2000)
+      .attr("cy", 125)
+      .attr("id", "timeline-sunday")
+      .attr("class", "ui-circle");
+
+      whiteBox.append("text")
+      .attr("x", 525)
+      .on("click", () => mapDataOverlay.addNewCircles(data))
+      .transition().duration(2000)
+      .attr("y", 131)
+      .text("Sunday")
+
+
+    //timeline circle
+    whiteBox.append("svg").append('circle')
+      .attr("cx", 510)
+      .attr("r", 12)
+      .transition().duration(2000)
+      .attr("cy", 200)
+      .attr("id", "timeline-monday")
+      .attr("class", "ui-circle");
+
+      whiteBox.append("text")
+      .attr("x", 525)
+      .on("click", () => mapDataOverlay.addNewCircles(data))
+      .transition().duration(2000)
+      .attr("y", 206)
+      .text("Monday")
+
+    //timeline circle
+    whiteBox.append("svg").append('circle')
+      .attr("cx", 510)
+      .attr("r", 12)
+      .transition().duration(2000)
+      .attr("cy", 275)
+      .attr("id", "timeline-tuesday")
+      .attr("class", "ui-circle");
+
+      whiteBox.append("text")
+      .attr("x", 525)
+      .on("click", () => mapDataOverlay.addNewCircles(data))
+      .transition().duration(2000)
+      .attr("y", 281)
+      .text("Tuesday")
+
+    //timeline circle
+    whiteBox.append("svg").append('circle')
+      .attr("cx", 510)
+      .attr("r", 12)
+      .transition().duration(2000)
+      .attr("cy", 350)
+      .attr("id", "timeline-wednesday")
+      .attr("class", "ui-circle");
+
+      whiteBox.append("text")
+      .attr("x", 525)
+      .on("click", () => mapDataOverlay.addNewCircles(data))
+      .transition().duration(2000)
+      .attr("y", 356)
+      .text("Wednesday")
+
+    //timeline circle
+    whiteBox.append("svg").append('circle')
+      .attr("cx", 510)
+      .attr("r", 12)
+      .transition().duration(2000)
+      .attr("cy", 425)
+      .attr("id", "timeline-thursday")
+      .attr("class", "ui-circle");
+
+      whiteBox.append("text")
+      .attr("x", 525)
+      .on("click", () => mapDataOverlay.addNewCircles(data))
+      .transition().duration(2000)
+      .attr("y", 431)
+      .text("Thursday")
+
+    //timeline circle
+    whiteBox.append("svg").append('circle')
+      .attr("cx", 510)
+      .attr("r", 12)
+      .transition().duration(2000)
+      .attr("cy", 500)
+      .attr("id", "timeline-friday")
+      .attr("class", "ui-circle");
+
+      whiteBox.append("text")
+      .attr("x", 525)
+      .on("click", () => mapDataOverlay.addNewCircles(data))
+      .transition().duration(2000)
+      .attr("y", 506)
+      .text("Friday")
 
   }
 }
