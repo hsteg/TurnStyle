@@ -755,7 +755,7 @@ class TurnStyle {
   addPlayControls() {
     const mapOverlay = new _map_data_overlay__WEBPACK_IMPORTED_MODULE_1__["default"]();
     const uIControls = new _ui_controls__WEBPACK_IMPORTED_MODULE_2__["default"]();
-    uIControls.initPlayControls();
+    uIControls.initPlayControls(this.data);
     const playControlsDiv = document.getElementById('play-controls');
     const controlBar = document.createElement('button');
     controlBar.innerHTML = 'clickme';
@@ -792,10 +792,10 @@ __webpack_require__.r(__webpack_exports__);
 
 class UIControls {
   constructor() {
-    this.mapDataOverlay = new _map_data_overlay__WEBPACK_IMPORTED_MODULE_0__["default"]();
   }
-
-  initPlayControls() {
+  
+  initPlayControls(data) {
+    const mapDataOverlay = new _map_data_overlay__WEBPACK_IMPORTED_MODULE_0__["default"]();
 
     d3.select('#ui-controls').append("svg").attr("id", "svg-container")
 
@@ -878,11 +878,12 @@ class UIControls {
     whiteBox.append("svg").append('circle')
       .attr("cx", 350)
       .attr("r", 12)
+      .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
-      .attr("cy", 225)
+      .attr("cy", 227)
       .attr("class", "ui-circle");
 
-    //herald sq circle 8th 14th circle
+    //8th 14th circle
     whiteBox.append("svg").append('circle')
       .attr("cx", 75)
       .attr("r", 12)
@@ -946,13 +947,6 @@ class UIControls {
       .transition().duration(2000)
       .attr("y", 356)
       .text("GitHub");
-
-
-    whiteBox.append("svg").append('button').text("asdfasdf").attr('height', 400).attr('width', 40);
-
-
-
-
 
   }
 }
