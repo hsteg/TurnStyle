@@ -618,20 +618,27 @@ class MapDataOverlay {
   }
 
   setActiveStation(active) {
-    let inactive = document.querySelectorAll(".ui-circle");
-    for (let i = 0; i < inactive.length; i++) {
-      inactive[i].style.fill = "white";
+    let inactiveCircles = document.querySelectorAll(".ui-circle");
+    let inactiveText = document.querySelectorAll(".timeline-text");
+
+    for (let i = 0; i < inactiveCircles.length; i++) {
+      inactiveCircles[i].style.fill = "white";
+      inactiveText[i].style.fill = "#777777";
     }
     
-    let day;
+    let circleDay;
+    let textDay;
+
     switch (active) {
       case 0:
       case 1:
       case 2:
       case 3:
       case 4:
-        day = document.querySelector("#timeline-saturday");
-        day.style.fill = "black";
+        circleDay = document.querySelector("#timeline-saturday");
+        circleDay.style.fill = "black";
+        textDay = document.querySelector("#timeline-text-saturday");
+        textDay.style.fill = "black";
         break;
       case 5:
       case 6:
@@ -639,8 +646,10 @@ class MapDataOverlay {
       case 8:
       case 9:
       case 10:
-        day = document.querySelector("#timeline-sunday");
-        day.style.fill = "black";
+        circleDay = document.querySelector("#timeline-sunday");
+        circleDay.style.fill = "black";
+        textDay = document.querySelector("#timeline-text-sunday");
+        textDay.style.fill = "black";
         break;
       case 11:
       case 12:
@@ -648,8 +657,10 @@ class MapDataOverlay {
       case 14:
       case 15:
       case 16:
-        day = document.querySelector("#timeline-monday");
-        day.style.fill = "black";
+        circleDay = document.querySelector("#timeline-monday");
+        circleDay.style.fill = "black";
+        textDay = document.querySelector("#timeline-text-monday");
+        textDay.style.fill = "black";
         break;
       case 17:
       case 18:
@@ -657,8 +668,10 @@ class MapDataOverlay {
       case 20:
       case 21:
       case 22:
-        day = document.querySelector("#timeline-tuesday");
-        day.style.fill = "black";
+        circleDay = document.querySelector("#timeline-tuesday");
+        circleDay.style.fill = "black";
+        textDay = document.querySelector("#timeline-text-tuesday");
+        textDay.style.fill = "black";
         break;
       case 23:
       case 24:
@@ -666,8 +679,10 @@ class MapDataOverlay {
       case 26:
       case 27:
       case 28:
-        day = document.querySelector("#timeline-wednesday");
-        day.style.fill = "black";
+        circleDay = document.querySelector("#timeline-wednesday");
+        circleDay.style.fill = "black";
+        textDay = document.querySelector("#timeline-text-wednesday");
+        textDay.style.fill = "black";
         break;
       case 29:
       case 30:
@@ -675,16 +690,20 @@ class MapDataOverlay {
       case 32:
       case 33:
       case 34:
-        day = document.querySelector("#timeline-thursday");
-        day.style.fill = "black";
+        circleDay = document.querySelector("#timeline-thursday");
+        circleDay.style.fill = "black";
+        textDay = document.querySelector("#timeline-text-thursday");
+        textDay.style.fill = "black";
         break;
       case 35:
       case 36:
       case 37:
       case 38:
       case 39:
-        day = document.querySelector("#timeline-friday");
-        day.style.fill = "black";
+        circleDay = document.querySelector("#timeline-friday");
+        circleDay.style.fill = "black";
+        textDay = document.querySelector("#timeline-text-friday");
+        textDay.style.fill = "black";
         break;
       default:
         break;
