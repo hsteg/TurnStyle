@@ -582,14 +582,10 @@ class MapDataOverlay {
       flatData.push(stationChunks);
     }
 
-    console.log(flatData);
-
     let stationLayer = d3.select(".stations");
 
-
-    let i = 36;
+    let i = 0;
     let timelineCircles;
-
 
     let interval = setInterval(() => {
 
@@ -929,27 +925,27 @@ __webpack_require__.r(__webpack_exports__);
 class TurnStyle {
   constructor() {
     this.data = [];
+    this.uIControls = new _ui_controls__WEBPACK_IMPORTED_MODULE_1__["default"]();
   }
 
   loadData() {
+    this.addPlayControls();
     Object(_dataParse__WEBPACK_IMPORTED_MODULE_0__["makeRequest"])().then(data => this.handleData(data));
   }
-
+  
   handleData(data) {
     this.data = data;
     this.removeLoading();
-    this.addPlayControls();
-    window.turnData = this.data;
   }
-
+  
   removeLoading() {
-    const loadingText = document.getElementById('loading');
-    loadingText.style.display = 'none';
+    const loadingText = document.getElementById('start-animation-text');
+    loadingText.textContent = "Start Animation";
+    this.uIControls.addStartButton(this.data);
   }
-
+  
   addPlayControls() {
-    const uIControls = new _ui_controls__WEBPACK_IMPORTED_MODULE_1__["default"]();
-    uIControls.initPlayControls(this.data);
+    this.uIControls.initPlayControls();
   }
 }
 
@@ -981,10 +977,10 @@ __webpack_require__.r(__webpack_exports__);
 
 class UIControls {
   constructor() {
+    this.mapDataOverlay = new _map_data_overlay__WEBPACK_IMPORTED_MODULE_0__["default"]();
   }
 
-  initPlayControls(data) {
-    const mapDataOverlay = new _map_data_overlay__WEBPACK_IMPORTED_MODULE_0__["default"]();
+  initPlayControls() {
 
     d3.select('#ui-controls').append("svg").attr("id", "svg-container")
 
@@ -1068,18 +1064,19 @@ class UIControls {
     whiteBox.append("svg").append('circle')
       .attr("cx", 350)
       .attr("r", 12)
-      .on("click", () => mapDataOverlay.addNewCircles(data))
+      .on("click", () => this.mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("cy", 227)
       .attr("class", "ui-circle-link");
 
     whiteBox.append("text")
       .attr("x", 365)
-      .on("click", () => mapDataOverlay.addNewCircles(data))
+      // .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 233)
-      .text("Start Animation")
-      .attr("class", "ui-link");
+      .text("Loading")
+      .attr("class", "ui-link")
+      .attr("id", "start-animation-text");
 
 
     //8th 14th circle
@@ -1316,6 +1313,12 @@ class UIControls {
       .attr("id", "timeline-text-time-friday")
       .attr("class", "timeline-text-time");
 
+  }
+
+  addStartButton(data) {
+    let buttonElement = document.getElementById('start-animation-text');
+    buttonElement.textContent = "Start Animation"
+    buttonElement.onclick = () => this.mapDataOverlay.addNewCircles(data);
   }
 }
 
