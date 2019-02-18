@@ -586,16 +586,23 @@ class MapDataOverlay {
 
     let stationLayer = d3.select(".stations");
 
-    
-    let i = 0;
+
+    let i = 36;
     let timelineCircles;
-    
+
 
     let interval = setInterval(() => {
+
+      if (i === 40) {
+        this.setActiveTimelineDate(40);
+        clearInterval(interval);
+        return;
+      }
+
       timelineCircles = document.querySelector(".ui-circle");
       timelineCircles.style.fill = "white";
       let newestData = flatData[i];
-      
+
       for (let k = 0; k < newestData.length; k++) {
         let marker = stationLayer.select(`#${newestData[k].stationCode}`);
         let numCircles = this.numCirclesToGenerate(newestData[k].diff);
@@ -607,11 +614,6 @@ class MapDataOverlay {
 
       this.setActiveTimelineDate(i);
 
-      // dataDisplay.innerHTML = i;
-      if (i === 39) { 
-        this.setActiveTimelineDate(40)
-        clearInterval(interval); 
-      }
       i++;
     }, 2300);
 
@@ -620,90 +622,174 @@ class MapDataOverlay {
   setActiveTimelineDate(active) {
     let inactiveCircles = document.querySelectorAll(".ui-circle");
     let inactiveText = document.querySelectorAll(".timeline-text");
+    let inactiveTimeText = document.querySelectorAll(".timeline-text-time");
 
     for (let i = 0; i < inactiveCircles.length; i++) {
       inactiveCircles[i].style.fill = "white";
       inactiveText[i].style.fill = "#777777";
+      inactiveTimeText[i].textContent = "";
     }
-    
-    let circleDay;
-    let textDay;
 
     switch (active) {
       case 0:
+        this.changeTimelineTextColors("#timeline-text-saturday",
+          "#timeline-text-time-saturday", "4:00AM - 8:00AM", "#timeline-saturday");
+        break;
       case 1:
+        this.changeTimelineTextColors("#timeline-text-saturday",
+          "#timeline-text-time-saturday", "8:00AM - 12:00PM", "#timeline-saturday");
+        break;
       case 2:
+        this.changeTimelineTextColors("#timeline-text-saturday",
+          "#timeline-text-time-saturday", "12:00PM - 4:00PM", "#timeline-saturday");
+        break;
       case 3:
+        this.changeTimelineTextColors("#timeline-text-saturday",
+          "#timeline-text-time-saturday", "4:00PM - 8:00PM", "#timeline-saturday");
+        break;
       case 4:
-        circleDay = document.querySelector("#timeline-saturday");
-        circleDay.style.fill = "black";
-        textDay = document.querySelector("#timeline-text-saturday");
-        textDay.style.fill = "black";
+        this.changeTimelineTextColors("#timeline-text-saturday",
+          "#timeline-text-time-saturday", "8:00PM - 12:00AM", "#timeline-saturday");
         break;
       case 5:
+        this.changeTimelineTextColors("#timeline-text-sunday",
+          "#timeline-text-time-sunday", "12:00AM - 4:00AM", "#timeline-sunday");
+        break;
       case 6:
+        this.changeTimelineTextColors("#timeline-text-sunday",
+          "#timeline-text-time-sunday", "4:00AM - 8:00AM", "#timeline-sunday");
+        break;
       case 7:
+        this.changeTimelineTextColors("#timeline-text-sunday",
+          "#timeline-text-time-sunday", "8:00AM - 12:00PM", "#timeline-sunday");
+        break;
       case 8:
+        this.changeTimelineTextColors("#timeline-text-sunday",
+          "#timeline-text-time-sunday", "12:00PM - 4:00PM", "#timeline-sunday");
+        break;
       case 9:
+        this.changeTimelineTextColors("#timeline-text-sunday",
+          "#timeline-text-time-sunday", "4:00PM - 8:00PM", "#timeline-sunday");
+        break;
       case 10:
-        circleDay = document.querySelector("#timeline-sunday");
-        circleDay.style.fill = "black";
-        textDay = document.querySelector("#timeline-text-sunday");
-        textDay.style.fill = "black";
+        this.changeTimelineTextColors("#timeline-text-sunday",
+          "#timeline-text-time-sunday", "8:00PM - 12:00AM", "#timeline-sunday");
         break;
       case 11:
+        this.changeTimelineTextColors("#timeline-text-monday",
+          "#timeline-text-time-monday", "12:00AM - 4:00AM", "#timeline-monday");
+        break;
       case 12:
+        this.changeTimelineTextColors("#timeline-text-monday",
+          "#timeline-text-time-monday", "4:00AM - 8:00AM", "#timeline-monday");
+        break;
       case 13:
+        this.changeTimelineTextColors("#timeline-text-monday",
+          "#timeline-text-time-monday", "8:00AM - 12:00PM", "#timeline-monday");
+        break;
       case 14:
+        this.changeTimelineTextColors("#timeline-text-monday",
+          "#timeline-text-time-monday", "12:00PM - 4:00PM", "#timeline-monday");
+        break;
       case 15:
+        this.changeTimelineTextColors("#timeline-text-monday",
+          "#timeline-text-time-monday", "4:00PM - 8:00PM", "#timeline-monday");
+        break;
       case 16:
-        circleDay = document.querySelector("#timeline-monday");
-        circleDay.style.fill = "black";
-        textDay = document.querySelector("#timeline-text-monday");
-        textDay.style.fill = "black";
+        this.changeTimelineTextColors("#timeline-text-monday",
+          "#timeline-text-time-monday", "8:00PM - 12:00AM", "#timeline-monday");
         break;
       case 17:
+        this.changeTimelineTextColors("#timeline-text-tuesday",
+          "#timeline-text-time-tuesday", "12:00AM - 4:00AM", "#timeline-tuesday");
+        break;
       case 18:
+        this.changeTimelineTextColors("#timeline-text-tuesday",
+          "#timeline-text-time-tuesday", "4:00AM - 8:00AM", "#timeline-tuesday");
+        break;
       case 19:
+        this.changeTimelineTextColors("#timeline-text-tuesday",
+          "#timeline-text-time-tuesday", "8:00AM - 12:00PM", "#timeline-tuesday");
+        break;
       case 20:
+        this.changeTimelineTextColors("#timeline-text-tuesday",
+          "#timeline-text-time-tuesday", "12:00PM - 4:00PM", "#timeline-tuesday");
+        break;
       case 21:
+        this.changeTimelineTextColors("#timeline-text-tuesday",
+          "#timeline-text-time-tuesday", "4:00PM - 8:00PM", "#timeline-tuesday");
+        break;
       case 22:
-        circleDay = document.querySelector("#timeline-tuesday");
-        circleDay.style.fill = "black";
-        textDay = document.querySelector("#timeline-text-tuesday");
-        textDay.style.fill = "black";
+        this.changeTimelineTextColors("#timeline-text-tuesday",
+          "#timeline-text-time-tuesday", "8:00PM - 12:00AM", "#timeline-tuesday");
         break;
       case 23:
+        this.changeTimelineTextColors("#timeline-text-wednesday",
+          "#timeline-text-time-wednesday", "12:00AM - 4:00AM", "#timeline-wednesday");
+        break;
       case 24:
+        this.changeTimelineTextColors("#timeline-text-wednesday",
+          "#timeline-text-time-wednesday", "4:00AM - 8:00AM", "#timeline-wednesday");
+        break;
       case 25:
+        this.changeTimelineTextColors("#timeline-text-wednesday",
+          "#timeline-text-time-wednesday", "8:00AM - 12:00PM", "#timeline-wednesday");
+        break;
       case 26:
+        this.changeTimelineTextColors("#timeline-text-wednesday",
+          "#timeline-text-time-wednesday", "12:00PM - 4:00PM", "#timeline-wednesday");
+        break;
       case 27:
+        this.changeTimelineTextColors("#timeline-text-wednesday",
+          "#timeline-text-time-wednesday", "4:00PM - 8:00PM", "#timeline-wednesday");
+        break;
       case 28:
-        circleDay = document.querySelector("#timeline-wednesday");
-        circleDay.style.fill = "black";
-        textDay = document.querySelector("#timeline-text-wednesday");
-        textDay.style.fill = "black";
+        this.changeTimelineTextColors("#timeline-text-wednesday",
+          "#timeline-text-time-wednesday", "8:00PM - 12:00AM", "#timeline-wednesday");
         break;
       case 29:
+        this.changeTimelineTextColors("#timeline-text-thursday",
+          "#timeline-text-time-thursday", "12:00AM - 4:00AM", "#timeline-thursday");
+        break;
       case 30:
+        this.changeTimelineTextColors("#timeline-text-thursday",
+          "#timeline-text-time-thursday", "4:00AM - 8:00AM", "#timeline-thursday");
+        break;
       case 31:
+        this.changeTimelineTextColors("#timeline-text-thursday",
+          "#timeline-text-time-thursday", "8:00AM - 12:00PM", "#timeline-thursday");
+        break;
       case 32:
+        this.changeTimelineTextColors("#timeline-text-thursday",
+          "#timeline-text-time-thursday", "12:00PM - 4:00PM", "#timeline-thursday");
+        break;
       case 33:
+        this.changeTimelineTextColors("#timeline-text-thursday",
+          "#timeline-text-time-thursday", "4:00PM - 8:00PM", "#timeline-thursday");
+        break;
       case 34:
-        circleDay = document.querySelector("#timeline-thursday");
-        circleDay.style.fill = "black";
-        textDay = document.querySelector("#timeline-text-thursday");
-        textDay.style.fill = "black";
+        this.changeTimelineTextColors("#timeline-text-thursday",
+          "#timeline-text-time-thursday", "8:00PM - 12:00AM", "#timeline-thursday");
         break;
       case 35:
+        this.changeTimelineTextColors("#timeline-text-friday",
+          "#timeline-text-time-friday", "12:00AM - 4:00AM", "#timeline-friday");
+        break;
       case 36:
+        this.changeTimelineTextColors("#timeline-text-friday",
+          "#timeline-text-time-friday", "4:00AM - 8:00AM", "#timeline-friday");
+        break;
       case 37:
+        this.changeTimelineTextColors("#timeline-text-friday",
+          "#timeline-text-time-friday", "8:00AM - 12:00PM", "#timeline-friday");
+        break;
       case 38:
+        this.changeTimelineTextColors("#timeline-text-friday",
+          "#timeline-text-time-friday", "12:00PM - 4:00PM", "#timeline-friday");
+        break;
       case 39:
-        circleDay = document.querySelector("#timeline-friday");
-        circleDay.style.fill = "black";
-        textDay = document.querySelector("#timeline-text-friday");
-        textDay.style.fill = "black";
+        this.changeTimelineTextColors("#timeline-text-friday",
+          "#timeline-text-time-friday", "4:00PM - 8:00PM", "#timeline-friday");
         break;
       default:
         break;
@@ -806,6 +892,15 @@ class MapDataOverlay {
     if (nonNegDifference > 15000) { return 3; }
     let numCircles = nonNegDifference / 500;
     return numCircles;
+  }
+
+  changeTimelineTextColors(dayElement, timeElement, time, circleElement) {
+    let textDay = document.querySelector(dayElement);
+    textDay.style.fill = "black";
+    let textTime = document.querySelector(timeElement);
+    textTime.textContent = time;
+    let circleDay = document.querySelector(circleElement);
+    circleDay.style.fill = "black";
   }
 
 }
@@ -965,8 +1060,9 @@ class UIControls {
       .style("stroke-width", 10)
       .attr("x1", 0)
       .attr("y1", 500)
-      .attr("x2", 1000)
-      .attr("y2", 500);
+      .attr("y2", 500)
+      .transition().duration(2000)
+      .attr("x2", 1000);
 
     //herald sq circle
     whiteBox.append("svg").append('circle')
@@ -1062,12 +1158,18 @@ class UIControls {
 
     whiteBox.append("text")
       .attr("x", 525)
-      .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 56)
       .attr("id", "timeline-text-saturday")
       .attr("class", "timeline-text")
-      .text("Saturday")
+      .text("Saturday");
+
+    whiteBox.append("text")
+      .attr("x", 525)
+      .transition().duration(2000)
+      .attr("y", 75)
+      .attr("id", "timeline-text-time-saturday")
+      .attr("class", "timeline-text-time");
 
     //timeline circle
     whiteBox.append("svg").append('circle')
@@ -1078,14 +1180,20 @@ class UIControls {
       .attr("id", "timeline-sunday")
       .attr("class", "ui-circle");
 
-      whiteBox.append("text")
+    whiteBox.append("text")
       .attr("x", 525)
-      .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 131)
       .attr("id", "timeline-text-sunday")
       .attr("class", "timeline-text")
       .text("Sunday")
+
+    whiteBox.append("text")
+      .attr("x", 525)
+      .transition().duration(2000)
+      .attr("y", 150)
+      .attr("id", "timeline-text-time-sunday")
+      .attr("class", "timeline-text-time");
 
 
     //timeline circle
@@ -1097,14 +1205,20 @@ class UIControls {
       .attr("id", "timeline-monday")
       .attr("class", "ui-circle");
 
-      whiteBox.append("text")
+    whiteBox.append("text")
       .attr("class", "timeline-text")
       .attr("x", 525)
-      .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 206)
       .attr("id", "timeline-text-monday")
       .text("Monday");
+
+    whiteBox.append("text")
+      .attr("x", 525)
+      .transition().duration(2000)
+      .attr("y", 225)
+      .attr("id", "timeline-text-time-monday")
+      .attr("class", "timeline-text-time");
 
     //timeline circle
     whiteBox.append("svg").append('circle')
@@ -1115,14 +1229,20 @@ class UIControls {
       .attr("id", "timeline-tuesday")
       .attr("class", "ui-circle");
 
-      whiteBox.append("text")
+    whiteBox.append("text")
       .attr("x", 525)
-      .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 281)
       .attr("id", "timeline-text-tuesday")
       .attr("class", "timeline-text")
       .text("Tuesday");
+
+    whiteBox.append("text")
+      .attr("x", 525)
+      .transition().duration(2000)
+      .attr("y", 300)
+      .attr("id", "timeline-text-time-tuesday")
+      .attr("class", "timeline-text-time");
 
     //timeline circle
     whiteBox.append("svg").append('circle')
@@ -1133,14 +1253,20 @@ class UIControls {
       .attr("id", "timeline-wednesday")
       .attr("class", "ui-circle");
 
-      whiteBox.append("text")
+    whiteBox.append("text")
       .attr("x", 525)
-      .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 356)
       .attr("id", "timeline-text-wednesday")
       .attr("class", "timeline-text")
       .text("Wednesday");
+
+    whiteBox.append("text")
+      .attr("x", 525)
+      .transition().duration(2000)
+      .attr("y", 375)
+      .attr("id", "timeline-text-time-wednesday")
+      .attr("class", "timeline-text-time");
 
     //timeline circle
     whiteBox.append("svg").append('circle')
@@ -1151,14 +1277,20 @@ class UIControls {
       .attr("id", "timeline-thursday")
       .attr("class", "ui-circle");
 
-      whiteBox.append("text")
+    whiteBox.append("text")
       .attr("x", 525)
-      .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 431)
       .attr("id", "timeline-text-thursday")
       .attr("class", "timeline-text")
       .text("Thursday");
+
+    whiteBox.append("text")
+      .attr("x", 525)
+      .transition().duration(2000)
+      .attr("y", 450)
+      .attr("id", "timeline-text-time-thursday")
+      .attr("class", "timeline-text-time");
 
     //timeline circle
     whiteBox.append("svg").append('circle')
@@ -1169,14 +1301,20 @@ class UIControls {
       .attr("id", "timeline-friday")
       .attr("class", "ui-circle");
 
-      whiteBox.append("text")
+    whiteBox.append("text")
       .attr("x", 525)
-      .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
-      .attr("y", 506)
+      .attr("y", 520)
       .attr("id", "timeline-text-friday")
       .attr("class", "timeline-text")
       .text("Friday");
+
+    whiteBox.append("text")
+      .attr("x", 525)
+      .transition().duration(2000)
+      .attr("y", 539)
+      .attr("id", "timeline-text-time-friday")
+      .attr("class", "timeline-text-time");
 
   }
 }

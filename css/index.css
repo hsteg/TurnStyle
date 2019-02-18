@@ -80,7 +80,7 @@ body {
 
 
 #svg-container {
-  height: 85vh;
+  height: calc(100vh - 120px);
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
@@ -116,5 +116,9 @@ body {
 
 .timeline-text {
   fill: #777777;
+}
+
+.timeline-text-time {
+  font-size: 12px;
 }
 
