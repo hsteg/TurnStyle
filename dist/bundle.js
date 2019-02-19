@@ -1075,14 +1075,25 @@ class UIControls {
       .attr("class", "ui-link")
       .attr("id", "start-animation-text");
 
-
-    //8th 14th circle
     whiteBox.append("svg").append('circle')
-      .attr("cx", 75)
+      .attr("cy", 500)
       .attr("r", 12)
       .transition().duration(2000)
-      .attr("cy", 500)
-      .attr("class", "ui-circle-link");
+      .attr("cx", 350)
+      .attr("class", "ui-circle");
+
+    d3.select('.left-half-main').append('div')
+      .style('position', 'absolute')
+      .style('top', '630px')
+      .style('background-color', '#f2e9d4')
+      .transition().duration(2000)
+      .attr('class', 'timeline-text-time')
+      .style('left', '365px')
+      .style('height', '100px')
+      .style('width', '120px')
+      .style('display', 'inline')
+      .style('background-color', 'transparent')
+      .text('Each dot represents 500 people. Green dots are people entering a station, red dots are people leaving a station.');
 
     //union sq circle
     whiteBox.append("svg").append('ellipse')
@@ -1092,18 +1103,6 @@ class UIControls {
       .transition().duration(2000)
       .attr("cx", 500)
       .attr("class", "ui-circle-link");
-
-    // whiteBox.append("rect")
-    //   .attr("x", 525)
-    //   .transition().duration(2000)
-    //   .attr("y", 515)
-    //   .attr("width", 120)
-    //   .attr("height", 120)
-    //   .text("All data provided by the MTA")
-    //   .style("fill", "#f2e9d4");
-    //   // .attr("class", "timeline-text-time")
-    //   // .style("position", "absolute");
-    //   // .text("All data provided by MTA");
 
     d3.select('.left-half-main').append('div')
       .style('position', 'absolute')
@@ -1118,8 +1117,19 @@ class UIControls {
       .style('background-color', 'transparent')
       .text('All data provided by the MTA');
 
+    //8th 14th circle
     whiteBox.append("a")
       .attr("xlink:href", "http://dev.harrisonsteg.com")
+      .append("svg")
+      .append('circle')
+      .attr("cx", 75)
+      .attr("r", 12)
+      .transition().duration(2000)
+      .attr("cy", 500)
+      .attr("class", "ui-circle-link");
+
+    whiteBox.append("a")
+      .attr("xlink:href", "mailto:hello@harrisonsteg.com")
       .append("svg")
       .append('circle')
       .attr("cx", 75)
@@ -1149,7 +1159,7 @@ class UIControls {
       .attr("class", "ui-circle-link");
 
     whiteBox.append("a")
-      .attr("xlink:href", "http://dev.harrisonsteg.com")
+      .attr("xlink:href", "mailto:hello@harrisonsteg.com")
       .append("text")
       .attr("class", "ui-link")
       .attr("x", 90)
@@ -1174,6 +1184,15 @@ class UIControls {
       .transition().duration(2000)
       .attr("y", 356)
       .text("GitHub");
+
+    whiteBox.append("a")
+      .attr("xlink:href", "http://dev.harrisonsteg.com")
+      .append("text")
+      .attr("class", "ui-link")
+      .attr("x", 90)
+      .transition().duration(2000)
+      .attr("y", 490)
+      .text("Harrison Steg");
 
     //timeline circle
     whiteBox.append("svg").append('circle')
