@@ -17,7 +17,9 @@ body {
 
 .left-half-main {
   width: 650px;
+  z-index: 50;
   background-color: #f2e9d4;
+  box-shadow: 5px 0 10px 3px rgba(0, 0, 0, .4);
 }
 
 .right-half-main {
@@ -108,7 +110,7 @@ body {
   cursor: pointer;
 }
 
-.ui-circle {
+.ui-circle, .ui-timeline-circle {
   fill: white;
   stroke: black;
   stroke-width: 3;

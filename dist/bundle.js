@@ -616,7 +616,7 @@ class MapDataOverlay {
   }
 
   setActiveTimelineDate(active) {
-    let inactiveCircles = document.querySelectorAll(".ui-circle");
+    let inactiveCircles = document.querySelectorAll(".ui-timeline-circle");
     let inactiveText = document.querySelectorAll(".timeline-text");
     let inactiveTimeText = document.querySelectorAll(".timeline-text-time");
 
@@ -988,20 +988,20 @@ class UIControls {
       .style('background-color', '#f2e9d4');
 
     //6 line
-    whiteBox.append('line')
-      .style("stroke-width", 10)
-      .style("stroke", "#1ba057")
-      .attr("x1", 510)
-      .attr("y1", 0)
-      .attr("x2", 510)
-      .transition().duration(2000)
-      .attr("y2", 1000);
+    // whiteBox.append('line')
+    //   .style("stroke-width", 10)
+    //   .style("stroke", "#1ba057")
+    //   .attr("x1", 510)
+    //   .attr("y1", 0)
+    //   .attr("x2", 510)
+    //   .transition().duration(2000)
+    //   .attr("y2", 1000);
 
-    // whiteBox.append('path')
-    // .style("stroke", "#1ba057")
-    // .style("fill", "transparent")
-    // .style("stroke-width", 10)
-    // .attr("d", "M 540 0 C 540 95 500 35 500 500 C 545 745 525 810 530 1000");
+    whiteBox.append('path')
+      .style("stroke", "#1ba057")
+      .style("fill", "transparent")
+      .style("stroke-width", 10)
+      .attr("d", "M 540 0 C 540 95 500 35 500 500 C 545 745 525 810 530 1000");
 
     //7th ave line
     whiteBox.append('line')
@@ -1022,21 +1022,21 @@ class UIControls {
       .style("stroke", "#0d68b6")
       .attr("d", "M 75 0 L 75 500 C 75 600 320 520 340 630 L 340 1000");
 
-    // whiteBox.append('path')
-    //   .style("stroke", "#f38022")
-    //   .style("stroke-width", 10)
-    //   .style("fill", "transparent")
-    //   .attr("d", "M 350 0 L 350 640 Q 350 680 775 680");
-
-    //6th ave line
-    whiteBox.append('line')
+    whiteBox.append('path')
       .style("stroke", "#f38022")
       .style("stroke-width", 10)
-      .attr("x1", 350)
-      .attr("y1", 0)
-      .attr("x2", 350)
-      .transition().duration(2000)
-      .attr("y2", 1000);
+      .style("fill", "transparent")
+      .attr("d", "M 350 0 L 350 640 Q 350 680 775 680");
+
+    //6th ave line
+    // whiteBox.append('line')
+    //   .style("stroke", "#f38022")
+    //   .style("stroke-width", 10)
+    //   .attr("x1", 350)
+    //   .attr("y1", 0)
+    //   .attr("x2", 350)
+    //   .transition().duration(2000)
+    //   .attr("y2", 1000);
 
 
     // broadway line
@@ -1096,13 +1096,20 @@ class UIControls {
       .text('Each dot represents 500 people. Green dots are people entering a station, red dots are people leaving a station.');
 
     //union sq circle
-    whiteBox.append("svg").append('ellipse')
-      .attr("ry", 12)
-      .attr("rx", 25)
-      .attr("cy", 500)
+    // whiteBox.append("svg").append('ellipse')
+    //   .attr("ry", 12)
+    //   .attr("rx", 25)
+    //   .attr("cy", 500)
+    //   .transition().duration(2000)
+    //   .attr("cx", 500)
+    //   .attr("class", "ui-circle-link");
+
+    whiteBox.append("svg").append('circle')
+      .attr("cx", 495)
+      .attr("r", 12)
       .transition().duration(2000)
-      .attr("cx", 500)
-      .attr("class", "ui-circle-link");
+      .attr("cy", 500)
+      .attr("class", "ui-circle");
 
     d3.select('.left-half-main').append('div')
       .style('position', 'absolute')
@@ -1196,15 +1203,15 @@ class UIControls {
 
     //timeline circle
     whiteBox.append("svg").append('circle')
-      .attr("cx", 510)
+      .attr("cx", 532)
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 60)
       .attr("id", "timeline-saturday")
-      .attr("class", "ui-circle");
+      .attr("class", "ui-timeline-circle");
 
     whiteBox.append("text")
-      .attr("x", 525)
+      .attr("x", 547)
       .transition().duration(2000)
       .attr("y", 66)
       .attr("id", "timeline-text-saturday")
@@ -1212,7 +1219,7 @@ class UIControls {
       .text("Saturday");
 
     whiteBox.append("text")
-      .attr("x", 525)
+      .attr("x", 547)
       .transition().duration(2000)
       .attr("y", 85)
       .attr("id", "timeline-text-time-saturday")
@@ -1220,15 +1227,15 @@ class UIControls {
 
     //timeline circle
     whiteBox.append("svg").append('circle')
-      .attr("cx", 510)
+      .attr("cx", 519)
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 120)
       .attr("id", "timeline-sunday")
-      .attr("class", "ui-circle");
+      .attr("class", "ui-timeline-circle");
 
     whiteBox.append("text")
-      .attr("x", 525)
+      .attr("x", 534)
       .transition().duration(2000)
       .attr("y", 126)
       .attr("id", "timeline-text-sunday")
@@ -1236,7 +1243,7 @@ class UIControls {
       .text("Sunday")
 
     whiteBox.append("text")
-      .attr("x", 525)
+      .attr("x", 534)
       .transition().duration(2000)
       .attr("y", 145)
       .attr("id", "timeline-text-time-sunday")
@@ -1250,7 +1257,7 @@ class UIControls {
       .transition().duration(2000)
       .attr("cy", 180)
       .attr("id", "timeline-monday")
-      .attr("class", "ui-circle");
+      .attr("class", "ui-timeline-circle");
 
     whiteBox.append("text")
       .attr("class", "timeline-text")
@@ -1269,15 +1276,15 @@ class UIControls {
 
     //timeline circle
     whiteBox.append("svg").append('circle')
-      .attr("cx", 510)
+      .attr("cx", 505)
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 240)
       .attr("id", "timeline-tuesday")
-      .attr("class", "ui-circle");
+      .attr("class", "ui-timeline-circle");
 
     whiteBox.append("text")
-      .attr("x", 525)
+      .attr("x", 520)
       .transition().duration(2000)
       .attr("y", 246)
       .attr("id", "timeline-text-tuesday")
@@ -1285,7 +1292,7 @@ class UIControls {
       .text("Tuesday");
 
     whiteBox.append("text")
-      .attr("x", 525)
+      .attr("x", 520)
       .transition().duration(2000)
       .attr("y", 265)
       .attr("id", "timeline-text-time-tuesday")
@@ -1293,15 +1300,15 @@ class UIControls {
 
     //timeline circle
     whiteBox.append("svg").append('circle')
-      .attr("cx", 510)
+      .attr("cx", 503)
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 300)
       .attr("id", "timeline-wednesday")
-      .attr("class", "ui-circle");
+      .attr("class", "ui-timeline-circle");
 
     whiteBox.append("text")
-      .attr("x", 525)
+      .attr("x", 518)
       .transition().duration(2000)
       .attr("y", 306)
       .attr("id", "timeline-text-wednesday")
@@ -1309,7 +1316,7 @@ class UIControls {
       .text("Wednesday");
 
     whiteBox.append("text")
-      .attr("x", 525)
+      .attr("x", 518)
       .transition().duration(2000)
       .attr("y", 325)
       .attr("id", "timeline-text-time-wednesday")
@@ -1317,15 +1324,15 @@ class UIControls {
 
     //timeline circle
     whiteBox.append("svg").append('circle')
-      .attr("cx", 510)
+      .attr("cx", 501)
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 360)
       .attr("id", "timeline-thursday")
-      .attr("class", "ui-circle");
+      .attr("class", "ui-timeline-circle");
 
     whiteBox.append("text")
-      .attr("x", 525)
+      .attr("x", 516)
       .transition().duration(2000)
       .attr("y", 366)
       .attr("id", "timeline-text-thursday")
@@ -1333,7 +1340,7 @@ class UIControls {
       .text("Thursday");
 
     whiteBox.append("text")
-      .attr("x", 525)
+      .attr("x", 516)
       .transition().duration(2000)
       .attr("y", 385)
       .attr("id", "timeline-text-time-thursday")
@@ -1341,15 +1348,15 @@ class UIControls {
 
     //timeline circle
     whiteBox.append("svg").append('circle')
-      .attr("cx", 510)
+      .attr("cx", 500)
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 420)
       .attr("id", "timeline-friday")
-      .attr("class", "ui-circle");
+      .attr("class", "ui-timeline-circle");
 
     whiteBox.append("text")
-      .attr("x", 525)
+      .attr("x", 515)
       .transition().duration(2000)
       .attr("y", 426)
       .attr("id", "timeline-text-friday")
@@ -1357,7 +1364,7 @@ class UIControls {
       .text("Friday");
 
     whiteBox.append("text")
-      .attr("x", 525)
+      .attr("x", 515)
       .transition().duration(2000)
       .attr("y", 445)
       .attr("id", "timeline-text-time-friday")
