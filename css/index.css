@@ -104,6 +104,7 @@ body {
   stroke: black;
   stroke-width: 3;
   cursor: pointer;
+  transition: .5s;
 }
 
 .ui-link {
@@ -114,6 +115,7 @@ body {
   fill: white;
   stroke: black;
   stroke-width: 3;
+  transition: .5s;
 }
 
 .ui-circle-link:hover {
