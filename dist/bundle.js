@@ -939,8 +939,6 @@ class TurnStyle {
   }
   
   removeLoading() {
-    const loadingText = document.getElementById('start-animation-text');
-    loadingText.textContent = "Start Animation";
     this.uIControls.addStartButton(this.data);
   }
   
@@ -1071,7 +1069,6 @@ class UIControls {
 
     whiteBox.append("text")
       .attr("x", 365)
-      // .on("click", () => mapDataOverlay.addNewCircles(data))
       .transition().duration(2000)
       .attr("y", 233)
       .text("Loading")
@@ -1086,6 +1083,40 @@ class UIControls {
       .transition().duration(2000)
       .attr("cy", 500)
       .attr("class", "ui-circle-link");
+
+    //union sq circle
+    whiteBox.append("svg").append('ellipse')
+      .attr("ry", 12)
+      .attr("rx", 25)
+      .attr("cy", 500)
+      .transition().duration(2000)
+      .attr("cx", 500)
+      .attr("class", "ui-circle-link");
+
+    // whiteBox.append("rect")
+    //   .attr("x", 525)
+    //   .transition().duration(2000)
+    //   .attr("y", 515)
+    //   .attr("width", 120)
+    //   .attr("height", 120)
+    //   .text("All data provided by the MTA")
+    //   .style("fill", "#f2e9d4");
+    //   // .attr("class", "timeline-text-time")
+    //   // .style("position", "absolute");
+    //   // .text("All data provided by MTA");
+
+    d3.select('.left-half-main').append('div')
+      .style('position', 'absolute')
+      .style('top', '630px')
+      .style('background-color', '#f2e9d4')
+      .transition().duration(2000)
+      .attr('class', 'timeline-text-time')
+      .style('left', '520px')
+      .style('height', '100px')
+      .style('width', '120px')
+      .style('display', 'inline')
+      .style('background-color', 'transparent')
+      .text('All data provided by the MTA');
 
     whiteBox.append("a")
       .attr("xlink:href", "http://dev.harrisonsteg.com")
@@ -1149,14 +1180,14 @@ class UIControls {
       .attr("cx", 510)
       .attr("r", 12)
       .transition().duration(2000)
-      .attr("cy", 50)
+      .attr("cy", 60)
       .attr("id", "timeline-saturday")
       .attr("class", "ui-circle");
 
     whiteBox.append("text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 56)
+      .attr("y", 66)
       .attr("id", "timeline-text-saturday")
       .attr("class", "timeline-text")
       .text("Saturday");
@@ -1164,7 +1195,7 @@ class UIControls {
     whiteBox.append("text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 75)
+      .attr("y", 85)
       .attr("id", "timeline-text-time-saturday")
       .attr("class", "timeline-text-time");
 
@@ -1173,14 +1204,14 @@ class UIControls {
       .attr("cx", 510)
       .attr("r", 12)
       .transition().duration(2000)
-      .attr("cy", 125)
+      .attr("cy", 120)
       .attr("id", "timeline-sunday")
       .attr("class", "ui-circle");
 
     whiteBox.append("text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 131)
+      .attr("y", 126)
       .attr("id", "timeline-text-sunday")
       .attr("class", "timeline-text")
       .text("Sunday")
@@ -1188,7 +1219,7 @@ class UIControls {
     whiteBox.append("text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 150)
+      .attr("y", 145)
       .attr("id", "timeline-text-time-sunday")
       .attr("class", "timeline-text-time");
 
@@ -1198,7 +1229,7 @@ class UIControls {
       .attr("cx", 510)
       .attr("r", 12)
       .transition().duration(2000)
-      .attr("cy", 200)
+      .attr("cy", 180)
       .attr("id", "timeline-monday")
       .attr("class", "ui-circle");
 
@@ -1206,14 +1237,14 @@ class UIControls {
       .attr("class", "timeline-text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 206)
+      .attr("y", 186)
       .attr("id", "timeline-text-monday")
       .text("Monday");
 
     whiteBox.append("text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 225)
+      .attr("y", 205)
       .attr("id", "timeline-text-time-monday")
       .attr("class", "timeline-text-time");
 
@@ -1222,14 +1253,14 @@ class UIControls {
       .attr("cx", 510)
       .attr("r", 12)
       .transition().duration(2000)
-      .attr("cy", 275)
+      .attr("cy", 240)
       .attr("id", "timeline-tuesday")
       .attr("class", "ui-circle");
 
     whiteBox.append("text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 281)
+      .attr("y", 246)
       .attr("id", "timeline-text-tuesday")
       .attr("class", "timeline-text")
       .text("Tuesday");
@@ -1237,7 +1268,7 @@ class UIControls {
     whiteBox.append("text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 300)
+      .attr("y", 265)
       .attr("id", "timeline-text-time-tuesday")
       .attr("class", "timeline-text-time");
 
@@ -1246,14 +1277,14 @@ class UIControls {
       .attr("cx", 510)
       .attr("r", 12)
       .transition().duration(2000)
-      .attr("cy", 350)
+      .attr("cy", 300)
       .attr("id", "timeline-wednesday")
       .attr("class", "ui-circle");
 
     whiteBox.append("text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 356)
+      .attr("y", 306)
       .attr("id", "timeline-text-wednesday")
       .attr("class", "timeline-text")
       .text("Wednesday");
@@ -1261,7 +1292,7 @@ class UIControls {
     whiteBox.append("text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 375)
+      .attr("y", 325)
       .attr("id", "timeline-text-time-wednesday")
       .attr("class", "timeline-text-time");
 
@@ -1270,14 +1301,14 @@ class UIControls {
       .attr("cx", 510)
       .attr("r", 12)
       .transition().duration(2000)
-      .attr("cy", 425)
+      .attr("cy", 360)
       .attr("id", "timeline-thursday")
       .attr("class", "ui-circle");
 
     whiteBox.append("text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 431)
+      .attr("y", 366)
       .attr("id", "timeline-text-thursday")
       .attr("class", "timeline-text")
       .text("Thursday");
@@ -1285,7 +1316,7 @@ class UIControls {
     whiteBox.append("text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 450)
+      .attr("y", 385)
       .attr("id", "timeline-text-time-thursday")
       .attr("class", "timeline-text-time");
 
@@ -1294,14 +1325,14 @@ class UIControls {
       .attr("cx", 510)
       .attr("r", 12)
       .transition().duration(2000)
-      .attr("cy", 500)
+      .attr("cy", 420)
       .attr("id", "timeline-friday")
       .attr("class", "ui-circle");
 
     whiteBox.append("text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 520)
+      .attr("y", 426)
       .attr("id", "timeline-text-friday")
       .attr("class", "timeline-text")
       .text("Friday");
@@ -1309,7 +1340,7 @@ class UIControls {
     whiteBox.append("text")
       .attr("x", 525)
       .transition().duration(2000)
-      .attr("y", 539)
+      .attr("y", 445)
       .attr("id", "timeline-text-time-friday")
       .attr("class", "timeline-text-time");
 

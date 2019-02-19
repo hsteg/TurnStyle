@@ -114,6 +114,10 @@ body {
   stroke-width: 3;
 }
 
+.ui-circle-link:hover {
+  fill: black;
+}
+
 .timeline-text {
   fill: #777777;
 }
