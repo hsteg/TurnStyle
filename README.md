@@ -1,5 +1,5 @@
 # README
-## TurnSTyle
+## TurnStyle
 [Live Site](http://dev.harrisonsteg.com/TurnStyle/)
 
 ![screenshot](./images/readme/turnstyleoverview.png?raw=true)
@@ -19,7 +19,7 @@ Javascript, D3.js, HTML, CSS
   The UI controls style inspiration comes from an MTA subway map. Created using D3.js to generate paths, lines, circles, and text, the currently visualized day and time is indicated on the right-side of the controls. 
 
 #### Data Visualization
-![vizshow](https://giphy.com/gifs/1lypzdxbJqjjBJJYYh/html5)
+![vizshow](./images/readme/turnstyleGIF.gif?raw=true)
 
   D3.js generated circles display entrances and exits at subway stations from parsed MTA data.  Each green dot moving towards a station represents 500 people entering that station, while each red dot moving away from a station represents 500 people leaving that station. 
 
