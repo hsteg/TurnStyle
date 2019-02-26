@@ -9,7 +9,7 @@
 TurnStyle is an visualizer displaying the MTA's data of all entrances and exits for subway stations for a given one week period built using Javascript and D3.js.  
 
 ## Technologies
-Javascript, D3.js, HTML, CSS
+Javascript, D3.js, Google Maps, HTML, CSS
 
 ## Features 
 #### UI Controls
@@ -21,7 +21,7 @@ Javascript, D3.js, HTML, CSS
 #### Data Visualization
 ![vizshow](./images/readme/turnstyleGIF.gif?raw=true)
 
-  D3.js generated circles display entrances and exits at subway stations from parsed MTA data.  Each green dot moving towards a station represents 500 people entering that station, while each red dot moving away from a station represents 500 people leaving that station. 
+  D3.js generated circles display entrances and exits at subway stations on top of a custom Google Maps overlay layer from parsed MTA data.  Each green dot moving towards a station represents 500 people entering that station, while each red dot moving away from a station represents 500 people leaving that station. 
 
 
 
