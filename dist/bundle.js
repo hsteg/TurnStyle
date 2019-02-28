@@ -337,83 +337,6 @@ const handleResults = (results) => {
     }
     codeDateTime[stationKeys[i]]=stationDifferences;
   }
-  // for (let i = 0; i < stationKeys.length; i++) {
-  //   let dateKeys = Object.keys(codeDateTime[stationKeys[i]]);
-  //   let stationDifferences = [];
-  //   for (let j = 0; j < dateKeys.length; j++) {
-  //     let chunkKeys = Object.keys(codeDateTime[stationKeys[i]][dateKeys[j]]);
-
-  //     for (let k = 0; k < chunkKeys.length; k++) {
-  //       // 4 is entries, 5 is exits
-  //       let entries = 0;
-  //       let exits = 0;
-  //       let date;
-  //       let time;
-  //       let stationName;
-  //       let stationCode;
-  //       codeDateTime[stationKeys[i]][dateKeys[j]][chunkKeys[k]].forEach(turnstile => {
-  //         entries += turnstile[4];
-  //         exits += turnstile[5];
-  //         date = turnstile[0];
-  //         time = turnstile[1];
-  //         stationName = turnstile[2];
-  //         stationCode = turnstile[6];
-  //       });
-  //       stationDifferences.push([stationCode, stationName, date, time, entries, exits]);
-  //     }
-  //   }
-  // }
-
-
-  // let stationKeys = Object.keys(filtered);
-  // let dateTimeTurnstiles = stationKeys.map(stationKey => {
-  //   return Object.values(filtered[stationKey]);
-  // });
-
-  // let formattedData = [];
-
-  // for (let i = 0; i < dateTimeTurnstiles.length; i++) {
-  //   let newStationData = [];
-  //   for (let j = 0; j < dateTimeTurnstiles[i].length; j++) {
-  //     let entries = 0;
-  //     let exits = 0;
-  //     let stationName = "";
-  //     let stationKey = "";
-  //     for (let k = 0; k < dateTimeTurnstiles[i][j].length; k++) {
-  //       entries += dateTimeTurnstiles[i][j][k][4];
-  //       exits += dateTimeTurnstiles[i][j][k][5];
-  //       stationName = dateTimeTurnstiles[i][j][k][2];
-  //       stationKey = dateTimeTurnstiles[i][j][k][6];
-  //     }
-  //     newStationData.push([stationKey, stationName, entries, exits]);
-  //   }
-  //   formattedData.push(newStationData);
-  // }
-
-  // let formattedDifferences = [];
-
-  // for (let i = 0; i < formattedData.length; i++) {
-  //   let differences = [];
-  //   for (let j = 0; j < formattedData[i].length - 1; j++) {
-  //     let entriesDifference = formattedData[i][j+1][2] - formattedData[i][j][2];
-  //     let exitsDifference = formattedData[i][j+1][3] - formattedData[i][j][3];
-  //     let stationCode = formattedData[i][j][0];
-  //     let stationName = formattedData[i][j][1];
-  //     let differenceRow = [stationCode, stationName, entriesDifference, exitsDifference];
-  //     differences.push(differenceRow);
-  //   }
-  //   formattedDifferences.push(differences);
-  // }
-
-  // let jsonFormattedDifferences = {};
-
-  // for (let i = 0; i < formattedDifferences.length - 1; i++) {
-  //   let stationCode = formattedDifferences[i][0][0];
-  //   jsonFormattedDifferences[stationCode] = formattedDifferences[i];
-  // }
-
-
-
 
 
   console.log("done");
@@ -455,8 +378,8 @@ papaparse__WEBPACK_IMPORTED_MODULE_0___default.a.parsePromise = function (file, 
   });
 };
 
-const makeRequest = async () => {
-  const results = await papaparse__WEBPACK_IMPORTED_MODULE_0___default.a.parsePromise("https://raw.githubusercontent.com/hsteg/TurnStyle/master/data/turnstile_190126.txt", optionsHash)
+const makeRequest = async (data) => {
+  const results = await papaparse__WEBPACK_IMPORTED_MODULE_0___default.a.parsePromise(data, optionsHash)
   return handleResults(results);
 }
 
@@ -928,19 +851,19 @@ class TurnStyle {
     this.uIControls = new _ui_controls__WEBPACK_IMPORTED_MODULE_1__["default"]();
   }
 
-  loadData() {
-    this.addPlayControls();
-    Object(_dataParse__WEBPACK_IMPORTED_MODULE_0__["makeRequest"])().then(data => this.handleData(data));
-  }
+  // loadData() {
+  //   this.addPlayControls();
+  //   makeRequest("https://raw.githubusercontent.com/hsteg/TurnStyle/master/data/turnstile_190126.txt").then(data => this.handleData(data));
+  // }
   
-  handleData(data) {
-    this.data = data;
-    this.removeLoading();
-  }
+  // handleData(data) {
+  //   this.data = data;
+  //   this.removeLoading();
+  // }
   
-  removeLoading() {
-    this.uIControls.addStartButton(this.data);
-  }
+  // removeLoading() {
+  //   this.uIControls.addStartButton(this.data);
+  // }
   
   addPlayControls() {
     this.uIControls.initPlayControls();
@@ -951,7 +874,7 @@ class TurnStyle {
 document.addEventListener("DOMContentLoaded", () => {
   console.log("dom loaded");
   const turnStyle = new TurnStyle();
-  turnStyle.loadData();
+  turnStyle.addPlayControls();
 })
 
 
@@ -971,6 +894,8 @@ document.addEventListener("DOMContentLoaded", () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map_data_overlay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map_data_overlay */ "./lib/map_data_overlay.js");
+/* harmony import */ var _dataParse__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataParse */ "./lib/dataParse.js");
+
 
 
 class UIControls {
@@ -1072,7 +997,7 @@ class UIControls {
       .attr("x", 365)
       .transition().duration(2000)
       .attr("y", 233)
-      .text("Loading")
+      .text("Select a Date")
       .attr("class", "ui-link")
       .attr("id", "start-animation-text");
 
@@ -1125,8 +1050,8 @@ class UIControls {
       .style('background-color', 'transparent')
       .text('All data provided by the MTA');
 
-      
-      whiteBox.append("a")
+
+    whiteBox.append("a")
       .attr("xlink:href", "mailto:hello@harrisonsteg.com")
       .append("text")
       .attr("class", "ui-link")
@@ -1134,8 +1059,8 @@ class UIControls {
       .transition().duration(2000)
       .attr("y", 106)
       .text("Contact");
-      
-      whiteBox.append("a")
+
+    whiteBox.append("a")
       .attr("xlink:href", "http://linkedin.com/in/hsteg")
       .append("text")
       .attr("class", "ui-link")
@@ -1143,8 +1068,8 @@ class UIControls {
       .transition().duration(2000)
       .attr("y", 231)
       .text("LinkedIn");
-      
-      whiteBox.append("a")
+
+    whiteBox.append("a")
       .attr("xlink:href", "http://github.com/hsteg")
       .append("text")
       .attr("class", "ui-link")
@@ -1152,8 +1077,8 @@ class UIControls {
       .transition().duration(2000)
       .attr("y", 356)
       .text("GitHub");
-      
-      whiteBox.append("a")
+
+    whiteBox.append("a")
       .attr("xlink:href", "http://dev.harrisonsteg.com")
       .append("text")
       .attr("class", "ui-link")
@@ -1161,8 +1086,83 @@ class UIControls {
       .transition().duration(2000)
       .attr("y", 490)
       .text("Harrison Steg");
-      
-      
+
+    // selector circles
+    whiteBox.append("svg")
+      .append('circle')
+      .attr("cx", 200)
+      .attr("r", 12)
+      .transition().duration(2000)
+      .attr("cy", 225)
+      .attr("class", "ui-circle");
+
+    whiteBox.append("text")
+      .attr("x", 215)
+      .transition().duration(2000)
+      .attr("y", 231)
+      .text("Date Range:");
+
+    whiteBox.append("svg")
+      .append('circle')
+      .attr("cx", 200)
+      .attr("r", 12)
+      .transition().duration(2000)
+      .attr("cy", 300)
+      .attr("class", "ui-circle");
+
+    whiteBox.append("text")
+      .attr("x", 215)
+      .transition().duration(2000)
+      .attr("y", 306)
+      .attr("class", "date-selection")
+      .text("Summer Date");
+
+    whiteBox.append("svg")
+      .append('circle')
+      .attr("cx", 200)
+      .attr("r", 12)
+      .transition().duration(2000)
+      .attr("cy", 350)
+      .attr("class", "ui-circle");
+
+    whiteBox.append("text")
+      .attr("x", 215)
+      .transition().duration(2000)
+      .attr("y", 356)
+      .attr("class", "date-selection")
+      .text("Autumn Date");
+
+    whiteBox.append("svg")
+      .append('circle')
+      .attr("cx", 200)
+      .attr("r", 12)
+      .transition().duration(2000)
+      .attr("cy", 400)
+      .attr("class", "ui-circle");
+
+    whiteBox.append("text")
+      .attr("x", 215)
+      .on("click", () => this.getAnimationData("https://raw.githubusercontent.com/hsteg/TurnStyle/master/data/turnstile_190126.txt"))
+      .transition().duration(2000)
+      .attr("y", 406)
+      .attr("class", "date-selection")
+      .text("Winter Date");
+
+    whiteBox.append("svg")
+      .append('circle')
+      .attr("cx", 200)
+      .attr("r", 12)
+      .transition().duration(2000)
+      .attr("cy", 450)
+      .attr("class", "ui-circle");
+
+    whiteBox.append("text")
+      .attr("x", 215)
+      .transition().duration(2000)
+      .attr("y", 456)
+      .attr("class", "date-selection")
+      .text("Spring Date");
+
     //8th 14th circle
     whiteBox.append("a")
       .attr("xlink:href", "http://dev.harrisonsteg.com")
@@ -1204,7 +1204,7 @@ class UIControls {
       .attr("cy", 350)
       .attr("class", "ui-circle-link");
 
-    
+
 
     //timeline circle
     whiteBox.append("svg").append('circle')
@@ -1381,6 +1381,11 @@ class UIControls {
     let buttonElement = document.getElementById('start-animation-text');
     buttonElement.textContent = "Start Animation"
     buttonElement.onclick = () => this.mapDataOverlay.addNewCircles(data);
+  }
+
+  getAnimationData(reqData) {
+    document.getElementById('start-animation-text').textContent = 'Loading';
+    Object(_dataParse__WEBPACK_IMPORTED_MODULE_1__["makeRequest"])(reqData).then(data => this.addStartButton(data));
   }
 }
 
