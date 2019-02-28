@@ -102,13 +102,17 @@ __webpack_require__.r(__webpack_exports__);
 
 const handleResults = (results) => {
   let finalResults;
+  let dateRange = [];
+
   const filtered = {};
   for (let i = 1; i < results.data.length; i++) {
     let stationKey = results.data[i][1];
     let dateKey = results.data[i][6];
     let timeKey = results.data[i][7];
     let dateTimeKey = `${dateKey}-${timeKey}`;
-
+    if (!dateRange.includes(dateKey)) {
+      dateRange.push(dateKey);
+    }
     if (!(stationKey in filtered)) { filtered[stationKey] = {}; }
     if (!(dateKey in filtered[stationKey])) { filtered[stationKey][dateKey] = []; }
   }
@@ -137,7 +141,7 @@ const handleResults = (results) => {
     if (!(stationKey in codeDateTime)) { codeDateTime[stationKey] = {}; }
     if (!(dateKey in codeDateTime[stationKey])) { codeDateTime[stationKey][dateKey] = {}; }
 
-    if (dateKey === "01/19/2019") {
+    if (dateKey === dateRange[0]) {
       codeDateTime[stationKey][dateKey][2] = [];
       codeDateTime[stationKey][dateKey][3] = [];
       codeDateTime[stationKey][dateKey][4] = [];
@@ -152,6 +156,7 @@ const handleResults = (results) => {
       codeDateTime[stationKey][dateKey][6] = [];
     }
   }
+
 
   for (let i = 1; i < results.data.length; i++) {
 
@@ -168,7 +173,6 @@ const handleResults = (results) => {
 
     let newDayKey = (parseInt(dateKey.slice(3, 5)) + 1).toString();
     let newDateKey = `01/${newDayKey}/2019`;
-
 
 
     if (dateKey === '01/19/2019') {
