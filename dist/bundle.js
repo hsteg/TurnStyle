@@ -174,9 +174,10 @@ const handleResults = (results) => {
     let newDayKey = (parseInt(dateKey.slice(3, 5)) + 1);
     let newMonthKey = parseInt(dateKey.slice(0, 2));
     let newYearKey = parseInt(dateKey.slice(6, 10));
-    if (newMonthKey < 10) {
-      newMonthKey = `0${newMonthKey}`
-    }
+    
+    if (newDayKey < 10) { newDayKey = `0${newDayKey}` }
+    if (newMonthKey < 10) { newMonthKey = `0${newMonthKey}` }
+    
     let newDateKey = `${newMonthKey}/${newDayKey}/${newYearKey}`;
 
     if (dateKey === dateRange[0]) {
@@ -346,11 +347,6 @@ const handleResults = (results) => {
     codeDateTime[stationKeys[i]] = stationDifferences;
   }
 
-
-  console.log("done");
-  // window.formattedData = formattedData;
-  window.data = filtered;
-  window.codeDateTime = codeDateTime;
   finalResults = codeDateTime;
   return finalResults;
 }
@@ -392,97 +388,6 @@ const makeRequest = async (data) => {
 }
 
 
-
-// const handleResults = (results) => {
-//   let finalResults;
-//   const filtered = {};
-//   for (let i = 1; i < results.data.length; i++) {
-//     let stationKey = results.data[i][1];
-//     let dateKey = results.data[i][6];
-//     let timeKey = results.data[i][7];
-//     let dateTimeKey = `${dateKey}-${timeKey}`;
-
-//     if (!(stationKey in filtered)) { filtered[stationKey] = {}; }
-//     if (!(dateKey in filtered[stationKey])) { filtered[stationKey][dateTimeKey] = []; }
-//   }
-
-//   for (let i = 1; i < results.data.length; i++) {
-//     let stationKey = results.data[i][1];
-//     let turnstileKey = results.data[i][2];
-//     let dateKey = results.data[i][6];
-//     let timeKey = results.data[i][7];
-//     let entries = results.data[i][9];
-//     let exits = results.data[i][10];
-//     let stationName = results.data[i][3];
-
-//     let dateTimeKey = `${dateKey}-${timeKey}`;
-
-//     filtered[stationKey][dateTimeKey].push([dateKey, timeKey, stationName, turnstileKey, entries, exits, stationKey]);
-//   }
-
-//   let stationKeys = Object.keys(filtered);
-//   let dateTimeTurnstiles = stationKeys.map(stationKey => {
-//     return Object.values(filtered[stationKey]);
-//   });
-
-//   let formattedData = [];
-
-//   for (let i = 0; i < dateTimeTurnstiles.length; i++) {
-//     let newStationData = [];
-//     for (let j = 0; j < dateTimeTurnstiles[i].length; j++) {
-//       let entries = 0;
-//       let exits = 0;
-//       let stationName = "";
-//       let stationKey = "";
-//       for (let k = 0; k < dateTimeTurnstiles[i][j].length; k++) {
-//         entries += dateTimeTurnstiles[i][j][k][4];
-//         exits += dateTimeTurnstiles[i][j][k][5];
-//         stationName = dateTimeTurnstiles[i][j][k][2];
-//         stationKey = dateTimeTurnstiles[i][j][k][6];
-//       }
-//       newStationData.push([stationKey, stationName, entries, exits]);
-//     }
-//     formattedData.push(newStationData);
-//   }
-
-//   let formattedDifferences = [];
-
-//   for (let i = 0; i < formattedData.length; i++) {
-//     let differences = [];
-//     for (let j = 0; j < formattedData[i].length - 1; j++) {
-//       let entriesDifference = formattedData[i][j+1][2] - formattedData[i][j][2];
-//       let exitsDifference = formattedData[i][j+1][3] - formattedData[i][j][3];
-//       let stationCode = formattedData[i][j][0];
-//       let stationName = formattedData[i][j][1];
-//       let differenceRow = [stationCode, stationName, entriesDifference, exitsDifference];
-//       differences.push(differenceRow);
-//     }
-//     formattedDifferences.push(differences);
-//   }
-
-//   let jsonFormattedDifferences = {};
-
-//   for (let i = 0; i < formattedDifferences.length - 1; i++) {
-//     let stationCode = formattedDifferences[i][0][0];
-//     jsonFormattedDifferences[stationCode] = formattedDifferences[i];
-//   }
-
-
-
-
-
-//   console.log("done");
-//   window.formattedData = formattedData;
-//   window.data = filtered;
-//   window.dateTimeTurnstiles = dateTimeTurnstiles;
-//   window.formattedDifferences = formattedDifferences;
-//   window.jsonDiff = jsonFormattedDifferences;
-//   finalResults = jsonFormattedDifferences;
-//   return finalResults;
-// }
-
-
-
 /***/ }),
 
 /***/ "./lib/map_data_overlay.js":
@@ -496,7 +401,6 @@ const makeRequest = async (data) => {
 __webpack_require__.r(__webpack_exports__);
 class MapDataOverlay {
   constructor() {
-
   }
 
   addNewCircles(data) {
@@ -521,6 +425,12 @@ class MapDataOverlay {
     let interval = setInterval(() => {
 
       if (i === 40) {
+        // let seasonSelections = document.querySelectorAll('.date-selection');
+        // let seasonCircles = document.querySelectorAll('.date-circle');
+        // for (let i = 0; i < seasonSelections.length; i++) {
+        //   seasonSelections[i].style.fill = "#777777";
+        //   seasonCircles[i].style.fill = "#ffffff";
+        // }
         this.setActiveTimelineDate(40);
         clearInterval(interval);
         return;
@@ -855,23 +765,8 @@ __webpack_require__.r(__webpack_exports__);
 
 class TurnStyle {
   constructor() {
-    this.data = [];
     this.uIControls = new _ui_controls__WEBPACK_IMPORTED_MODULE_1__["default"]();
   }
-
-  // loadData() {
-  //   this.addPlayControls();
-  //   makeRequest("https://raw.githubusercontent.com/hsteg/TurnStyle/master/data/turnstile_190126.txt").then(data => this.handleData(data));
-  // }
-  
-  // handleData(data) {
-  //   this.data = data;
-  //   this.removeLoading();
-  // }
-  
-  // removeLoading() {
-  //   this.uIControls.addStartButton(this.data);
-  // }
   
   addPlayControls() {
     this.uIControls.initPlayControls();
@@ -880,7 +775,6 @@ class TurnStyle {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("dom loaded");
   const turnStyle = new TurnStyle();
   turnStyle.addPlayControls();
 })
@@ -1005,7 +899,7 @@ class UIControls {
       .attr("x", 365)
       .transition().duration(2000)
       .attr("y", 233)
-      .text("Select a Date")
+      .text("Select a Week")
       .attr("class", "ui-link")
       .attr("id", "start-animation-text");
 
@@ -1108,7 +1002,7 @@ class UIControls {
       .attr("x", 215)
       .transition().duration(2000)
       .attr("y", 231)
-      .text("Date Range:");
+      .text("Weeks:");
 
     whiteBox.append("svg")
       .append('circle')
@@ -1116,14 +1010,17 @@ class UIControls {
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 300)
-      .attr("class", "ui-circle");
+      .attr("id", "summer-circle")
+      .attr("class", "date-circle");
 
     whiteBox.append("text")
       .attr("x", 215)
+      .on("click", () => this.getAnimationData("https://raw.githubusercontent.com/hsteg/TurnStyle/multiple_dates/data/turnstile_180811.txt", "summer"))
       .transition().duration(2000)
       .attr("y", 306)
       .attr("class", "date-selection")
-      .text("Summer Date");
+      .attr("id", "summer-selection")
+      .text("Summer Week");
 
     whiteBox.append("svg")
       .append('circle')
@@ -1131,14 +1028,17 @@ class UIControls {
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 350)
-      .attr("class", "ui-circle");
+      .attr("id", "autumn-circle")
+      .attr("class", "date-circle");
 
     whiteBox.append("text")
       .attr("x", 215)
+      .on("click", () => this.getAnimationData("https://raw.githubusercontent.com/hsteg/TurnStyle/multiple_dates/data/turnstile_181020.txt", "autumn"))
       .transition().duration(2000)
       .attr("y", 356)
       .attr("class", "date-selection")
-      .text("Autumn Date");
+      .attr("id", "autumn-selection")
+      .text("Autumn Week");
 
     whiteBox.append("svg")
       .append('circle')
@@ -1146,15 +1046,17 @@ class UIControls {
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 400)
-      .attr("class", "ui-circle");
+      .attr("id", "winter-circle")
+      .attr("class", "date-circle");
 
     whiteBox.append("text")
       .attr("x", 215)
-      .on("click", () => this.getAnimationData("https://raw.githubusercontent.com/hsteg/TurnStyle/master/data/turnstile_190126.txt"))
+      .on("click", () => this.getAnimationData("https://raw.githubusercontent.com/hsteg/TurnStyle/master/data/turnstile_190126.txt", "winter"))
       .transition().duration(2000)
       .attr("y", 406)
       .attr("class", "date-selection")
-      .text("Winter Date");
+      .attr("id", "winter-selection")
+      .text("Winter Week");
 
     whiteBox.append("svg")
       .append('circle')
@@ -1162,14 +1064,17 @@ class UIControls {
       .attr("r", 12)
       .transition().duration(2000)
       .attr("cy", 450)
-      .attr("class", "ui-circle");
+      .attr("id", "spring-circle")
+      .attr("class", "date-circle");
 
     whiteBox.append("text")
       .attr("x", 215)
+      .on("click", () => this.getAnimationData("https://raw.githubusercontent.com/hsteg/TurnStyle/multiple_dates/data/turnstile_180414.txt", "spring"))
       .transition().duration(2000)
       .attr("y", 456)
       .attr("class", "date-selection")
-      .text("Spring Date");
+      .attr("id", "spring-selection")
+      .text("Spring Week");
 
     //8th 14th circle
     whiteBox.append("a")
@@ -1391,8 +1296,18 @@ class UIControls {
     buttonElement.onclick = () => this.mapDataOverlay.addNewCircles(data);
   }
 
-  getAnimationData(reqData) {
+  getAnimationData(reqData, season) {
     document.getElementById('start-animation-text').textContent = 'Loading';
+    let inactiveSeasons = document.querySelectorAll('.date-selection');
+    let inactiveCircles = document.querySelectorAll('.date-circle');
+    
+    for (let i = 0; i < inactiveSeasons.length; i++) {
+      inactiveSeasons[i].style.fill = "#777777";
+      inactiveCircles[i].style.fill = "#ffffff"
+    }
+
+    document.getElementById(`${season}-selection`).style.fill = "#000000";
+    document.getElementById(`${season}-circle`).style.fill = "#000000";
     Object(_dataParse__WEBPACK_IMPORTED_MODULE_1__["makeRequest"])(reqData).then(data => this.addStartButton(data));
   }
 }

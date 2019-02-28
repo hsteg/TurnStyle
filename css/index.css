@@ -80,7 +80,6 @@ body {
   box-sizing: border-box;
 }
 
-
 #svg-container {
   height: calc(100vh - 120px);
   box-sizing: border-box;
@@ -111,7 +110,7 @@ body {
   cursor: pointer;
 }
 
-.ui-circle, .ui-timeline-circle {
+.ui-circle, .ui-timeline-circle, .date-circle {
   fill: white;
   stroke: black;
   stroke-width: 3;
@@ -133,6 +132,11 @@ body {
 .date-selection {
   font-size: 14px;
   fill: #777777;
+  cursor: pointer;
 }
 
+.date-selection:hover {
+  font-size: 14px;
+  fill: #000000;
+}
 
