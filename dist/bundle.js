@@ -1015,7 +1015,7 @@ class UIControls {
 
     whiteBox.append("text")
       .attr("x", 215)
-      .on("click", () => this.getAnimationData("https://raw.githubusercontent.com/hsteg/TurnStyle/multiple_dates/data/turnstile_180811.txt", "summer"))
+      .on("click", () => this.getAnimationData("https://raw.githubusercontent.com/hsteg/TurnStyle/master/data/turnstile_180811.txt", "summer"))
       .transition().duration(2000)
       .attr("y", 306)
       .attr("class", "date-selection")
@@ -1033,7 +1033,7 @@ class UIControls {
 
     whiteBox.append("text")
       .attr("x", 215)
-      .on("click", () => this.getAnimationData("https://raw.githubusercontent.com/hsteg/TurnStyle/multiple_dates/data/turnstile_181020.txt", "autumn"))
+      .on("click", () => this.getAnimationData("https://raw.githubusercontent.com/hsteg/TurnStyle/master/data/turnstile_181020.txt", "autumn"))
       .transition().duration(2000)
       .attr("y", 356)
       .attr("class", "date-selection")
@@ -1069,7 +1069,7 @@ class UIControls {
 
     whiteBox.append("text")
       .attr("x", 215)
-      .on("click", () => this.getAnimationData("https://raw.githubusercontent.com/hsteg/TurnStyle/multiple_dates/data/turnstile_180414.txt", "spring"))
+      .on("click", () => this.getAnimationData("https://raw.githubusercontent.com/hsteg/TurnStyle/master/data/turnstile_180414.txt", "spring"))
       .transition().duration(2000)
       .attr("y", 456)
       .attr("class", "date-selection")
